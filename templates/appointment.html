@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
+</head>
+<body>
+<h1>this is appointment</h1>
+<table>
+    <tr>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Availability</th>
+    </tr>
+    {% for r in appointments %}
+        <tr>
+            <td>{{ r[4]}}</td>
+            <td>{{ r[5]}}</td>
+            {% if r[2]==None %}
+            	<td><a class="btn btn-success" href="{{ url_for('survey',appointment_id=r[0], app_date=app_date)}}">Appointment</a></td>
+            {% else %}
+            	<td><a class="btn btn-success">Unavailable</a></td>
+            {% endif %}
+
+        </tr>
+    {% endfor %}
+
+</table>
+</body>
+</html>

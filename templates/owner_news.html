@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner_News</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
+</head>
+<body>
+<h1>This is all news for owner to check and edit!</h1>
+<button><a href="{{ url_for('news_create' )}}">Write New News</a></button>
+
+{% for r in news %}
+	<tr>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] }}</td>
+        <td>{{ r[3] }}</td>
+        <td>{{ r[4] }}</td>
+        <td><a class="btn btn-success" href="{{ url_for('news_edit', news_id=r[0]) }}">Edit</a></td>
+        <td><a class="btn btn-success" href="{{ url_for('news_delete', news_id=r[0]) }}">Delete</a></td>
+    </tr>
+{% endfor %}
+
+</body>
+</html>

@@ -5,6 +5,32 @@
     <title>Appointment_View</title>
 </head>
 <body>
+    <h1>Today's appointments</h1>
+    <table>
+    <tr>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Patient</th>
+        <th>View Detail</th>
+    </tr>
+    {% for r in appointments %}
+        <tr>
+            <td>{{ r[4]}}</td>
+            <td>{{ r[5]}}</td>
+            <td>{{ r[0] }}</td>
+        {% if r[1] is none %}
+            <td><a class="btn btn-success">No patient</a></td>
+            <td><a class="btn btn-success">No Appointment</a></td>
+        {% else %}
+            <td><a class="btn btn-success" href="{{ url_for('patient_detail', patient_id=r[1])}}">{{ r[6] }}</a></td>
+            <td><a class="btn btn-success" href="{{ url_for('record_detail', patient_id=2, app_date=app_date) }}">Detail</a></td>
+        {% endif %}
+
+
+        </tr>
+    {% endfor %}
+
+</table>
 
 </body>
 </html>

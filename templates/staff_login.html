@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff_Login</title>
+</head>
+<body>
+    <form method="post">
+        <input type="text" name="uname" required>
+        <input type="password" name="psw" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <button><a href="{{ url_for('staff_register') }}">Create an Account</a></button>
+
+</body>
+</html>

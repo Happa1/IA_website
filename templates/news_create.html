@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>News_Edit</title>
+    <title>News_Create</title>
 </head>
 <body>
-<h1>Edit news</h1>
 <form method="post">
-    <input type="text" placeholder="Title" name="title" value="{{news[1]}}" required>
-    <textarea name="content" rows="5" cols="30">{{news[2]}}</textarea>
+    <input type="text" placeholder="Title" name="title"  required>
+    <textarea name="content" rows="5" cols="30"></textarea>
     <select name="type" required>
         <option value="" selected>Please select</option>
         <option value="news">News</option>
@@ -16,6 +15,5 @@
     </select>
     <button type="submit">Post</button>
 </form>
-
 </body>
 </html>

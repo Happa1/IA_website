@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient_Search</title>
+</head>
+<body>
+
+<form method="post">
+    <label>ID Search</label>
+    <input type="text" name="search_id">
+    <label>Date Search</label>
+    <input type="date" name="search_date">
+    <button type="submit">Search</button>
+</form>
+
+<table>
+    <tr>
+        <th>PatientID</th>
+        <th>Patient Name</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>Record</th>
+    </tr>
+    {% if no_record == False %}
+    	{% for r in records%}
+        <tr>
+            <td>{{ r[10]}}</td>
+            <td>{{ r[11]}}</td>
+            <td>{{ r[2]}}</td>
+            <td>{{ r[3]}}</td>
+            <td><a class="btn btn-success" href="{{ url_for('record_detail',patient_id=r[1], app_date=r[2])}}">Record</a></td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+
+</table>
+
+</body>
+</html>

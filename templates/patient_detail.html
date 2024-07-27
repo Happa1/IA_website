@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient_detail</title>
+</head>
+<body>
+<h2>Patient Info</h2>
+<h3>Name: {{ patient_data[2] }}</h3>
+<h3>{{ patient_data[3] }}</h3>
+<h3>{{ patient_data[4] }}</h3>
+<h3>{{ patient_data[7] }}</h3>
+
+<h2>All Record</h2>
+
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Record</th>
+        </tr>
+    {% for r in patient_record %}
+        <tr>
+            <td>{{ r[2]}}</td>
+            <td>{{ r[3]}}</td>
+            <td>{{ r[4]}}</td>
+            <td><a class="btn btn-success" href="{{ url_for('record_detail',patient_id=r[1], app_date=r[2])}}">Record</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+</body>
+</html>

@@ -3,8 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <script src="https://kit.fontawesome.com/b6f31539a5.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<header>
+    <div class="header_top">
+        <div>
+            <h1>Pediatrics Clinic</h1>
+        </div>
+
+        <div class="top_right">
+            <button><a href="{{ url_for('pre_app') }}"><i class="fas fa-calendar"></i><span>Appointment</span></a></button>
+            <div id="contact_phone" style="border: 4px solid #f39800">
+                <i class="fa-solid fa-phone"></i>
+                <div id="phone_number_div">
+                    <h3 id="phone_number">092-331-8888</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="top_navigation">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('hello_world') }}"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+                <li><a href="{{ url_for('medical_info') }}"><i class="fa-solid fa-briefcase-medical"></i><span>Medical</span></a></li>
+                <li><a href="{{ url_for('clinic_info') }}"><i class="fa-solid fa-house-chimney-medical"></i><span>Clinic</span></a></li>
+                <li><a href="{{ url_for('greetings') }}"><i class="fa-solid fa-user-doctor"></i><span>Greetings</span></a></li>
+                <li><a href="{{ url_for('news') }}"><i class="fa-solid fa-comment"></i><span>News</span></a></li>
+                <li><a href="{{ url_for('access') }}"><i class="fa-solid fa-location-dot"></i><span>Access</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
 <h1>Home</h1>
 <button><a href="{{ url_for('pre_app') }}">Make an appointment</a></button>
 </body>

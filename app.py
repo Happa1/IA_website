@@ -415,6 +415,26 @@ def news_delete(news_id):
     db_connection.close()
     return redirect(url_for('owner_news'))
 
+@app.route('/medical_info')
+def medical_info():
+    return render_template('medical_info.html')
+
+@app.route('/clinic_info')
+def clinic_info():
+    return render_template('clinic_info.html')
+
+@app.route('/greetings')
+def greetings():
+    return render_template('greetings.html')
+
+@app.route('/news')
+def news():
+    return render_template('news.html')
+
+@app.route('/access')
+def access():
+    return render_template('access.html')
+
 
 @app.route('/pre_password')
 def pre_password():

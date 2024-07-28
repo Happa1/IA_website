@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment_Staff_Edit</title>
+</head>
+<body>
+<h1>Appointment Edit page</h1>
+<form  method="post">
+    <label for="symptom">Symptom</label>
+    <input type="text" name="symptom" id="symptom" value="{{ record[5] }}" required>
+    <label for="temperature">Temperature</label>
+    <input type="text" inputmode="numeric" name="temperature1" id="temperature" pattern="^(?:[0-9]{1,2}(\.[0-9])?)?" value="{{ record[6] }}" required>
+{#    <p>.</p>#}
+{#    <input type="text" inputmode="numeric" name="temperature2" id="temperature2" pattern="[0-9]{1}" value="{{ record[6]}}" required>#}
+    <label for="note">Note</label>
+    <input type="text" name="note" id="note" value="{{ record[7] }}" required>
+    <button type="submit">Edit</button>
+</form>
+</body>
+</html>

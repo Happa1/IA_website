@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timedelta, time
-
+from apscheduler.schedulers.blocking import BlockingScheduler
 from flask import Flask, render_template, request, redirect, url_for, make_response
 import re
 from tools import *
@@ -11,8 +11,8 @@ app.secret_key = os.urandom(24)
 
 @app.route('/', methods=['GET','POST'])
 def hello_world():  # put application's code here
-    print()
     db_connection = DatabaseWorker("IA_database")
+    appointment_day_set()
     db_connection.close()
     return render_template('home.html')
 
@@ -132,15 +132,13 @@ def survey(appointment_id, app_date):
     if request.method=="POST":
         patient_id = user_id
         symptom = request.form.get('symptom')
-        temperature1 = request.form.get('temperature1')
-        temperature2 = request.form.get('temperature2')
-        temperature = float(f"{temperature1}.{temperature2}")
+        temperature = request.form.get('temperature1')
         note = request.form.get('note')
         time= db_connection.search(query=f"""
         SELECT start_time, end_time FROM appointments WHERE id = {appointment_id}""", multiple=False)
 
         query=f"""
-        INSERT INTO record ('patient_id','date','start_time','end_time','symptom','temperature','note')
+        INSERT INTO record (patient_id, date, start_time, end_time, symptom, temperature, note)
         values ({user_id},'{app_date}','{time[0]}','{time[1]}','{symptom}','{temperature}','{note}')
         """
         db_connection.run_query(query=query)
@@ -152,8 +150,10 @@ def survey(appointment_id, app_date):
 
         query_appointment=f"""
         UPDATE appointments 
-        SET patient_id={patient_id}, survey_id={record_id}, date={app_date} WHERE id={appointment_id}
+        SET patient_id={patient_id}, survey_id={record_id}, date="{app_date}" WHERE id={appointment_id}
         """
+        print(app_date)
+        print(type(app_date))
         db_connection.run_query(query=query_appointment)
         db_connection.close()
         return redirect(url_for('appointment_check'))
@@ -212,7 +212,6 @@ def staff_register():
     db_connection.close()
     return render_template('staff_register.html')
 
-
 @app.route('/staff_login',methods=['GET','POST'])
 def staff_login():
     db_connection = DatabaseWorker("IA_database")
@@ -233,7 +232,6 @@ def staff_login():
                 login_err = True
     db_connection.close()
     return render_template('staff_login.html', login_err=login_err)
-
 
 @app.route('/owner_home')
 def owner_home():
@@ -258,20 +256,50 @@ def appointment_view():
     index=0
     for a in appointment_data:
         appointment_list.append(list(a))
-        if a[1] != None:
+        if a[1] != 0:
             patient_name = db_connection.search(query=f"SELECT name FROM patients WHERE id = {a[1]}", multiple=False)[0]
             appointment_list[index].append(patient_name)
             index += 1
         else:
             appointment_list[index].append('None')
             index += 1
+    print(appointment_list)
     return render_template('appointment_view.html',appointments=appointment_list, app_date=app_date)
 
-@app.route('/record_detail/<int:patient_id>/<app_date>', methods=['GET','POST'])
-def record_detail(patient_id, app_date):
+@app.route('/app_edit/<int:record_id>', methods=['GET','POST'])
+def app_edit(record_id):
+    db_connection = DatabaseWorker("IA_database")
+    record = db_connection.search(query=f"""
+    SELECT * FROM record WHERE id={record_id}""")
+    if request.method == "POST":
+        new_symptom = request.form.get('symptom')
+        new_temperature = request.form.get('temperature1')
+        new_note = request.form.get('note')
+        query = f"""
+                UPDATE record SET symptom ='{new_symptom}',temperature={new_temperature},note='{new_note}'
+                """
+        db_connection.run_query(query=query)
+        return redirect(url_for('appointment_view'))
+    return render_template('appointment_staff_edit.html', record=record)
+
+@app.route('/app_cancel/<int:appointment_id>')
+def app_cancel(appointment_id):
+    db_connection = DatabaseWorker("IA_database")
+    print(appointment_id)
+    record_id=db_connection.search(query=f"""
+    SELECT survey_id FROM appointments WHERE id={appointment_id}""", multiple=False)[0]
+    db_connection.run_query(query=f"""
+    DELETE FROM record WHERE id={record_id}""")
+    db_connection.run_query(query=f"""
+    UPDATE appointments SET patient_id=0, survey_id=0 WHERE id ={appointment_id} """)
+    db_connection.close()
+    return redirect(url_for('appointment_view'))
+
+@app.route('/record_detail/<int:record_id>/<int:patient_id>', methods=['GET','POST'])
+def record_detail(record_id,patient_id):
     db_connection = DatabaseWorker("IA_database")
     query=f"""
-    SELECT * FROM record WHERE date ='{app_date}' AND patient_id={patient_id}"""
+    SELECT * FROM record WHERE id={record_id}"""
     app_detail=db_connection.search(query=query, multiple=False)
     patient_data=db_connection.search(query=f"""
     SELECT * FROM patients WHERE id={patient_id}""",multiple=False)
@@ -280,7 +308,7 @@ def record_detail(patient_id, app_date):
 @app.route('/patient_search',methods=['GET','POST'])
 def patient_search():
     db_connection = DatabaseWorker("IA_database")
-
+    record_list = []
     if request.method == "POST":
         id = request.form.get('search_id')
         print(id)
@@ -310,14 +338,13 @@ def patient_search():
                 print(f"No records")
 
         if no_record == False:
-            record_list=[]
             for r in records:
                 r=list(r)
                 print(r)
                 patient_id= str(r[1]).zfill(6)
-                print(patient_id)
+                print(r[1])
                 patient_name=db_connection.search(query=f"""
-                SELECT name FROM patients WHERE id={r[0]}""",multiple=False)[0]
+                SELECT name FROM patients WHERE id={r[1]}""",multiple=False)[0]
                 r.append(patient_id) #id 10
                 r.append(patient_name) #id 11
                 record_list.append(r)
@@ -325,7 +352,6 @@ def patient_search():
         return render_template('patient_search.html', no_record=no_record, records=record_list)
 
     return render_template('patient_search.html')
-
 
 @app.route('/patient_detail/<int:patient_id>')
 def patient_detail(patient_id):
@@ -380,7 +406,7 @@ def news_edit(news_id):
     db_connection.close()
     return render_template('news_edit.html', news=news_data)
 
-@app.route('/news_delete/<int:news_id>',methods=['GET','POST'])
+@app.route('/news_delete/<int:news_id>/delete',methods=['GET','POST'])
 def news_delete(news_id):
     db_connection = DatabaseWorker("IA_database")
     query=f"""
@@ -388,6 +414,7 @@ def news_delete(news_id):
     db_connection.run_query(query=query)
     db_connection.close()
     return redirect(url_for('owner_news'))
+
 
 @app.route('/pre_password')
 def pre_password():

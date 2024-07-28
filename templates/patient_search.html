@@ -29,7 +29,7 @@
             <td>{{ r[11]}}</td>
             <td>{{ r[2]}}</td>
             <td>{{ r[3]}}</td>
-            <td><a class="btn btn-success" href="{{ url_for('record_detail',patient_id=r[1], app_date=r[2])}}">Record</a></td>
+            <td><a class="btn btn-success" href="{{ url_for('record_detail',record_id =r[0],patient_id=r[1])}}">Record</a></td>
         </tr>
         {% endfor %}
     {% endif %}

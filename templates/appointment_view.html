@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Appointment_View</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
+
 </head>
 <body>
     <h1>Today's appointments</h1>
@@ -17,14 +19,19 @@
         <tr>
             <td>{{ r[4]}}</td>
             <td>{{ r[5]}}</td>
-            <td>{{ r[0] }}</td>
-        {% if r[1] is none %}
+        {% if r[1]==0 %}
             <td><a class="btn btn-success">No patient</a></td>
             <td><a class="btn btn-success">No Appointment</a></td>
+{#            <td><a class="btn btn-success" href="{{ url_for('app_edit', record) }}"></a></td>#}
+{#            <td><a class="btn btn-success" href="{{ url_for('') }}"></a></td>#}
         {% else %}
             <td><a class="btn btn-success" href="{{ url_for('patient_detail', patient_id=r[1])}}">{{ r[6] }}</a></td>
-            <td><a class="btn btn-success" href="{{ url_for('record_detail', patient_id=2, app_date=app_date) }}">Detail</a></td>
+            <td><a class="btn btn-success" href="{{ url_for('record_detail', record_id=r[2], patient_id=r[1]) }}">Detail</a></td>
+            <td><a class="btn btn-success" href="{{ url_for('app_edit', record_id=r[2]) }}">Edit</a></td>
+            <td><a class="btn btn-success" href="{{ url_for('app_cancel', appointment_id=r[0]) }}"
+            onclick="return confirm('Are you sure you want to cancel?')">Cancel</a></td>
         {% endif %}
+
 
 
         </tr>

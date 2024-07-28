@@ -17,7 +17,7 @@
         <tr>
             <td>{{ r[4]}}</td>
             <td>{{ r[5]}}</td>
-            {% if r[2]==None %}
+            {% if r[2]==0 %}
             	<td><a class="btn btn-success" href="{{ url_for('survey',appointment_id=r[0], app_date=app_date)}}">Appointment</a></td>
             {% else %}
             	<td><a class="btn btn-success">Unavailable</a></td>

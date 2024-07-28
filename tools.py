@@ -1,6 +1,8 @@
 # my_lib
+from datetime import datetime, timedelta, time
 import sqlite3
-
+from apscheduler.schedulers.blocking import BlockingScheduler
+import schedule
 from flask import session
 from passlib.hash import sha256_crypt
 
@@ -55,3 +57,22 @@ def logging():
     if user_id:
         login = True
     return login
+
+def appointment_day_set():
+    print('insert next day')
+    db_connection = DatabaseWorker("IA_database")
+    current_time = datetime.now().time()
+    app_start_time = time(17, 0)
+    app_end_time = time(23, 59)
+    if (app_start_time <= current_time <= app_end_time):
+        app_date = (datetime.today() + timedelta(days=1)).date()
+    else:
+        app_date=datetime.today().date()
+
+    current_app_date=db_connection.search(query=f"""
+    SELECT date FROM appointments WHERE id = 1""")[0]
+    print(current_app_date)
+    if current_app_date!=app_date:
+        db_connection.run_query(query=f"""
+            UPDATE appointments SET date='{app_date}'""")
+    db_connection.close()

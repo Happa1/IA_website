@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Owner_News</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
 </head>
 <body>
@@ -16,7 +17,8 @@
         <td>{{ r[3] }}</td>
         <td>{{ r[4] }}</td>
         <td><a class="btn btn-success" href="{{ url_for('news_edit', news_id=r[0]) }}">Edit</a></td>
-        <td><a class="btn btn-success" href="{{ url_for('news_delete', news_id=r[0]) }}">Delete</a></td>
+        <td><a class="btn btn-success" href="{{ url_for('news_delete', news_id=r[0]) }}"
+               onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
     </tr>
 {% endfor %}
 

@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Appointment</title>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
-    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/static/appointment_common.css">
     <link rel="stylesheet" href="/static/appointment.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
+
 </head>
 <body>
 <div id="container">
-<header>
+    <header>
     <div>
         <span>U. Pediatrics Clinic<br>Appointment page</span>
     </div>
-</header>
+    </header>
 
 <section class="body_container">
     <h1>Make an Appointment</h1>
@@ -39,8 +40,13 @@
 
         </table>
     </div>
-    <button><a href="{{ url_for('login') }}">Back to previous page</a> </button>
-    <button><a href="{{ url_for('hello_world') }}">Go back to Homepage</a> </button>
+    <div class="bottom_btn_container">
+        <button class="bottom_btn"><a href="{{ url_for('login') }}">Go Back</a> </button>
+        <button class="bottom_btn"><a href="{{ url_for('select_app') }}">Go back to Top</a> </button>
+        <button class="bottom_btn"><a href="{{ url_for('hello_world') }}">Go back to HP</a> </button>
+    </div>
+
+
 </section>
 
 

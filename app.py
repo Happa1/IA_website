@@ -22,7 +22,7 @@ def hello_world():  # put application's code here
 
 @app.route('/select_app')
 def select_app():
-    return render_template('select_appointment.html')
+    return render_template('appointment_select.html')
 
 @app.route('/pre_app')
 def pre_app():

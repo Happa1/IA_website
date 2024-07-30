@@ -1,21 +1,8 @@
-html{
-    background-color: #ffedec;
-}
-
-header{
-    background-color: #FFFFFF;
-    height: 15vh;
-    text-align: center;
-    font-size: 30px;
-}
-
-header span{
-    color: #f79d93;
-}
-
 .body_container{
-    margin-top: 15vh;
+    /*margin-top: 15vh;*/
     padding: 3vh;
+    flex-direction: column;
+    text-align: center;
 }
 
 #app_table{

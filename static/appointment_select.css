@@ -1,0 +1,13 @@
+#btn_menu{
+    text-align: center;
+    width: 70vh;
+    padding: 0.5em 1em;
+    margin: 30px auto;
+    color: #00BCD4;
+    background: #e4fcff;
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+}

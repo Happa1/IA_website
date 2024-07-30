@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select_Appointment</title>
+    <link rel="stylesheet" href="/static/appointment_common.css">
+    <link rel="stylesheet" href="/static/appointment_select.css">
+</head>
+<body>
+<div id="container">
+    <header>
+        <div>
+            <span>U. Pediatrics Clinic<br>Appointment page</span>
+        </div>
+    </header>
+    <section>
+        <div id="btn_menu">
+            <button class="bottom_btn"><a href="{{ url_for('pre_app') }}">Make an Appointment</a></button>
+            <button class="bottom_btn"><a href="{{ url_for('pre_app') }}">Change Appointment</a></button>
+            <button class="bottom_btn"><a href="{{ url_for('pre_app') }}">Cancel Appointment</a></button>
+        </div>
+
+        <div id="clinic_info_container">
+        </div>
+    </section>
+
+
+
+</div>
+
+
+</body>
+</html>

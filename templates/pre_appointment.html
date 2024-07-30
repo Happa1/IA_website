@@ -6,14 +6,19 @@
      <script src="https://kit.fontawesome.com/b6f31539a5.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/static/pre_appointment.css">
-    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/static/appointment_common.css">
 </head>
 <body>
 <div id="container">
+    <header>
+        <div>
+            <span>U. Pediatrics Clinic<br>Appointment page</span>
+        </div>
+    </header>
     <div id="btn_menu">
-        <button><a href="{{ url_for('login') }}">Have a patient id</a></button>
-        <button><a href="{{ url_for('register') }}">Register new</a></button>
-        <button>Cancel Appointment</button>
+        <button class="bottom_btn"><a href="{{ url_for('login') }}">Have a patient ID</a></button>
+        <button class="bottom_btn"><a href="{{ url_for('register') }}">Register new</a></button>
+        <button class="bottom_btn">Cancel Appointment</button>
 
     </div>
 

@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Pre_appoint</title>
+     <script src="https://kit.fontawesome.com/b6f31539a5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/static/pre_appointment.css">
+    <link rel="stylesheet" href="/static/common.css">
 </head>
 <body>
-<button><a href="{{ url_for('login') }}">Have a patient id</a></button>
-<button><a href="{{ url_for('register') }}">Register new</a></button>
+<div id="container">
+    <div id="btn_menu">
+        <button><a href="{{ url_for('login') }}">Have a patient id</a></button>
+        <button><a href="{{ url_for('register') }}">Register new</a></button>
+        <button>Cancel Appointment</button>
+
+    </div>
+
+</div>
 </body>
 </html>

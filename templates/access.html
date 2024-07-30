@@ -5,6 +5,40 @@
     <title>Access</title>
 </head>
 <body>
+<div id="container">
+    <header>
+    <div class="header_top">
+        <div id="name">
+            <h1><a href="{{ url_for('hello_world') }}">U. Pediatrics Clinic</a></h1>
+        </div>
+
+        <div id="top_right">
+            <button id="appointment_btn"><a href="{{ url_for('pre_app') }}"><i class="fas fa-calendar"></i><span>Appointment</span></a></button>
+            <div id="phone_container" style="border: 4px solid #f39800">
+                <div id="phone_number">
+                    <i class="fa-solid fa-phone"></i><span>092-331-8888</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="top_navigation">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('hello_world') }}"><i class="fa-solid fa-house"></i><br><span>Home</span></a></li>
+                <li><a href="{{ url_for('medical_info') }}"><i class="fa-solid fa-briefcase-medical"></i><br><span>Medical</span></a></li>
+                <li><a href="{{ url_for('clinic_info') }}"><i class="fa-solid fa-house-chimney-medical"></i><br><span>Clinic</span></a></li>
+                <li><a href="{{ url_for('greetings') }}"><i class="fa-solid fa-user-doctor"></i><br><span>Greetings</span></a></li>
+                <li><a href="{{ url_for('news_all') }}"><i class="fa-solid fa-comment"></i><br><span>News</span></a></li>
+                <li><a href="{{ url_for('access') }}"><i class="fa-solid fa-location-dot"></i><br><span>Access</span></a></li>
+            </ul>
+        </nav>
+    </div>
+    </header>
+
+</div>
 
 </body>
 </html>

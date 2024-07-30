@@ -4,28 +4,47 @@
     <meta charset="UTF-8">
     <title>Appointment</title>
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
+    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/static/appointment.css">
 </head>
 <body>
-<h1>this is appointment</h1>
-<table>
-    <tr>
-        <th>Start time</th>
-        <th>End time</th>
-        <th>Availability</th>
-    </tr>
-    {% for r in appointments %}
-        <tr>
-            <td>{{ r[4]}}</td>
-            <td>{{ r[5]}}</td>
-            {% if r[2]==0 %}
-            	<td><a class="btn btn-success" href="{{ url_for('survey',appointment_id=r[0], app_date=app_date)}}">Appointment</a></td>
-            {% else %}
-            	<td><a class="btn btn-success">Unavailable</a></td>
-            {% endif %}
+<div id="container">
+<header>
+    <div>
+        <span>U. Pediatrics Clinic<br>Appointment page</span>
+    </div>
+</header>
 
-        </tr>
-    {% endfor %}
+<section class="body_container">
+    <h1>Make an Appointment</h1>
+    <div id="app_table">
+        <table>
+            <tr>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Availability</th>
+            </tr>
+            {% for r in appointments %}
+                <tr>
+                    <td>{{ r[4]}}</td>
+                    <td>{{ r[5]}}</td>
+                    {% if r[2]==0 %}
+                        <td><a class="btn btn-success" href="{{ url_for('survey',appointment_id=r[0], app_date=app_date)}}">Appointment</a></td>
+                    {% else %}
+                        <td><button class="">Unavailable</button> </td>
+                    {% endif %}
 
-</table>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    <button><a href="{{ url_for('login') }}">Back to previous page</a> </button>
+    <button><a href="{{ url_for('hello_world') }}">Go back to Homepage</a> </button>
+</section>
+
+
+</div>
+
 </body>
 </html>

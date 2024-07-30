@@ -13,35 +13,39 @@
 
 <div id="container">
     <header>
-    <div id="header_top">
-        <div>
-            <h1>Pediatrics Clinic</h1>
+    <div class="header_top">
+        <div id="name">
+            <h1><a href="{{ url_for('hello_world') }}">U. Pediatrics Clinic</a></h1>
         </div>
 
         <div id="top_right">
-            <button><a href="{{ url_for('pre_app') }}"><i class="fas fa-calendar"></i><span>Appointment</span></a></button>
-            <div id="contact_phone" style="border: 4px solid #f39800">
-                <i class="fa-solid fa-phone"></i>
-                <div id="phone_number_div">
-                    <h3 id="phone_number">092-331-8888</h3>
+            <button id="appointment_btn"><a href="{{ url_for('select_app') }}"><i class="fas fa-calendar"></i><span>Appointment</span></a></button>
+            <div id="phone_container" style="border: 4px solid #f39800">
+                <div id="phone_number">
+                    <i class="fa-solid fa-phone"></i><span>092-331-8888</span>
                 </div>
+
             </div>
         </div>
+
     </div>
 
     <div class="top_navigation">
         <nav>
             <ul>
-                <li><a href="{{ url_for('hello_world') }}"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
-                <li><a href="{{ url_for('medical_info') }}"><i class="fa-solid fa-briefcase-medical"></i><span>Medical</span></a></li>
-                <li><a href="{{ url_for('clinic_info') }}"><i class="fa-solid fa-house-chimney-medical"></i><span>Clinic</span></a></li>
-                <li><a href="{{ url_for('greetings') }}"><i class="fa-solid fa-user-doctor"></i><span>Greetings</span></a></li>
-                <li><a href="{{ url_for('news') }}"><i class="fa-solid fa-comment"></i><span>News</span></a></li>
-                <li><a href="{{ url_for('access') }}"><i class="fa-solid fa-location-dot"></i><span>Access</span></a></li>
+                <li><a href="{{ url_for('hello_world') }}"><i class="fa-solid fa-house"></i><br><span>Home</span></a></li>
+                <li><a href="{{ url_for('medical_info') }}"><i class="fa-solid fa-briefcase-medical"></i><br><span>Medical</span></a></li>
+                <li><a href="{{ url_for('clinic_info') }}"><i class="fa-solid fa-house-chimney-medical"></i><br><span>Clinic</span></a></li>
+                <li><a href="{{ url_for('greetings') }}"><i class="fa-solid fa-user-doctor"></i><br><span>Greetings</span></a></li>
+                <li><a href="{{ url_for('news_all') }}"><i class="fa-solid fa-comment"></i><br><span>News</span></a></li>
+                <li><a href="{{ url_for('access') }}"><i class="fa-solid fa-location-dot"></i><br><span>Access</span></a></li>
             </ul>
         </nav>
     </div>
-</header>
+    </header>
+    <div class="side-menu">
+        <button type="button" id="app_fixed_button" onclick="location.href='{{ url_for('select_app') }}'"><i class="fas fa-calendar"></i><br>Appointment</button>
+    </div>
     <section id="slide_show_container">
         <ul class="slideshow-fade">
             <li class="slide"></li>
@@ -50,16 +54,102 @@
         </ul>
     </section>
 
-    <section id="news_medical_container">
+    <section id="news_office_hour_container" class="section_container">
+        <div id="news_container">
+            <h3>News</h3>
+            <ul class="news_list">
+                {% for n in news %}
+                	<li class="news_item"><a href="{{ url_for('news', news_id=n[0])}}">
+                    <p class="news_date">{{ n[1] }}</p>
+                    <p class="news_category"><span>{{n[4]}}</span></p>
+                    <p class="news_title">{{ n[2]}}</p>
+                 </a></li>
+                {% endfor %}
+            </ul>
+        <button id="news_button"><a href="{{ url_for('news_all') }}">More...</a> </button>
+        </div>
+
+        <div id="office_hour_container">
+            <h3>Office Hours</h3>
+            <div class="office_hour_table">
+            <table>
+                <tr>
+                    <th class="title"></th>
+                    <td class="day">Mon</td>
+                    <td class="day">Tue</td>
+                    <td class="day">Wed</td>
+                    <td class="day">Thu</td>
+                    <td class="day">Fri</td>
+                    <td class="day">Sat</td>
+                    <td class="none2" class="day">Sun</td>
+                </tr>
+                <tr>
+                    <th>9:00-12:00</th>
+                    <td><span class="circle">●</span></td>
+                    <td><span class="circle">●</span></td>
+                    <td><span class="circle">●</span></td>
+                    <td><span class="circle">●</span></td>
+                    <td><span class="circle">●</span></td>
+                    <td><span class="star">9:00-13:00</span></td>
+                    <td class="none">-</td>
+                </tr>
+                <tr>
+                    <th>vaccination<br>12:00-13:00</th>
+                    <td><span class="circle">-</span></td>
+                    <td><span class="circle">-</span></td>
+                    <td><span class="circle">●</span></td>
+                    <td><span class="circle">-</span></td>
+                    <td><span class="circle">-</span></td>
+                    <td>-</td>
+                    <td class="none">-</td>
+                </tr>
+                <tr>
+                    <th class="none"><div>14:00-18:00</div></th>
+                    <td class="none"><span class="circle">●</span></td>
+                    <td class="none"><span class="circle">●</span></td>
+                    <td class="none">-</td>
+                    <td class="none"><span class="circle">●</span></td>
+                    <td class="none"><span class="circle">●</span></td>
+                    <td class="none">-</td>
+                    <td class="none">-</td>
+                </tr>
+            </table>
+            </div>
+        </div>
 
     </section>
 
-    <section id="head_info_container">
 
+    <section id="service_container" class="section_container">
+        <h3>Services</h3>
+        <button>infection</button>
+        <button>infection</button>
+        <button>infection</button>
+        <button>infection</button>
     </section>
+
+
+    <section id="head_info_container" class="section_container">
+        <h3>Doctor</h3>
+        <img src="static/image/image10.jpg">
+        <p>日本小児科学会　専門医<br>日本アレルギー学会　アレルギー専門医</p>
+    </section>
+
 
     <section id="footer_info_container">
+        <div class="access">
 
+            <div class="google_map">
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.5818680057127!2d130.1917858!3d33.564238599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541e9c53e9adde9%3A0x66ad839e70e91d89!2z44GG44GI44Gg44GT44Gp44KC44Kv44Oq44OL44OD44Kv!5e0!3m2!1sja!2sjp!4v1689573451642!5m2!1sja!2sjp"
+                style="border:0;"
+                width="600"
+                height="250"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
     </section>
 
     <footer>

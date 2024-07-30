@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Survey</title>
+    <link rel="stylesheet" href="/static/appointment_common.css">
+    <link rel="stylesheet" href="/static/survey.css">
+
 </head>
 <body>
-<h1>survey page</h1>
-<form action="/survey/{{ appointment_id }}/{{ app_date }}" method="post">
-    <label for="symptom">Symptom</label>
-    <input type="text" name="symptom" id="symptom" required>
-    <label for="temperature">Temperature</label>
-    <input type="text" inputmode="numeric" name="temperature1" id="temperature" pattern="^(?:[0-9]{1,2}(\.[0-9])?)?" required>
-    <label for="note">Note</label>
-    <input type="text" name="note" id="note" required>
-    <button type="submit">Submit</button>
-</form>
+<div id="container">
+
+    <header>
+    <div>
+        <span>U. Pediatrics Clinic<br>Appointment page</span>
+    </div>
+    </header>
+
+    <section class="body_container">
+        <h1>survey page</h1>
+        <div id="survey_container">
+            <form action="/survey/{{ appointment_id }}/{{ app_date }}" method="post">
+                <div class="survey_container_child">
+                     <label for="symptom">Symptom</label>
+                    <input class=Form-Item-Input" type="text" name="symptom" id="symptom" required>
+                </div>
+
+                <div class="survey_container_child">
+                    <label for="temperature">Temperature</label>
+                    <input class=Form-Item-Input" type="text" inputmode="numeric" name="temperature1" id="temperature" pattern="^(?:[0-9]{1,2}(\.[0-9])?)?" placeholder="Please write in xx.x" required>
+                </div>
+
+                <div class="survey_container_child">
+                    <label for="note">Note</label>
+                    <textarea class=Form-Item-Input" type="text" name="note" id="note" required></textarea>
+                </div>
+
+                <div class="btn_container">
+                    <button id="submit_btn"  type="submit" class="btn btn--red btn--radius btn--cubic">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+
+</div>
+
 
 </body>
 </html>

@@ -1,0 +1,34 @@
+html{
+    background-color: #ffedec;
+}
+
+header{
+    background-color: #FFFFFF;
+    height: 15vh;
+    text-align: center;
+    font-size: 30px;
+}
+
+header span{
+    color: #f79d93;
+}
+
+.body_container{
+    margin-top: 15vh;
+    padding: 3vh;
+}
+
+#app_table{
+    text-align: center;
+    width: 70vh;
+    padding: 0.5em 1em;
+    margin: 30px auto;
+    color: #00BCD4;
+    background: #e4fcff;/*背景色*/
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+}
+
+th,td{
+    width: 200px;
+}

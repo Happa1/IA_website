@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Staff_Home</title>
+    <title>Owner_Home</title>
 </head>
 <body>
-<h1>Welcome to staff home!</h1>
+<h1>Welcome to Owner Page</h1>
+<button><a href="{{ url_for('appointment_view') }}">Check Today's Appointment</a></button>
+<button><a href="{{ url_for('patient_search') }}">See Patient List</a></button>
+<button><a href="{{ url_for('owner_news') }}">Update News</a></button>
+<button><a href="{{ url_for('pre_password') }}">Create Staff Account or Edit</a></button>
 </body>
 </html>

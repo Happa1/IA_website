@@ -13,8 +13,16 @@ app.secret_key = os.urandom(24)
 def hello_world():  # put application's code here
     db_connection = DatabaseWorker("IA_database")
     appointment_day_set()
+    query = f"""
+        SELECT * FROM news"""
+    news = db_connection.search(query=query, multiple=True)
     db_connection.close()
-    return render_template('home.html')
+
+    return render_template('home.html', news=news)
+
+@app.route('/select_app')
+def select_app():
+    return render_template('select_appointment.html')
 
 @app.route('/pre_app')
 def pre_app():
@@ -235,7 +243,7 @@ def staff_login():
 
 @app.route('/owner_home')
 def owner_home():
-    return render_template('owner_home.html')
+    return render_template('staff_home.html')
 
 @app.route('/appointment_view')
 def appointment_view():
@@ -280,7 +288,7 @@ def app_edit(record_id):
                 """
         db_connection.run_query(query=query)
         return redirect(url_for('appointment_view'))
-    return render_template('appointment_staff_edit.html', record=record)
+    return render_template('staff_appointment_edit.html', record=record)
 
 @app.route('/app_cancel/<int:appointment_id>')
 def app_cancel(appointment_id):
@@ -303,7 +311,7 @@ def record_detail(record_id,patient_id):
     app_detail=db_connection.search(query=query, multiple=False)
     patient_data=db_connection.search(query=f"""
     SELECT * FROM patients WHERE id={patient_id}""",multiple=False)
-    return render_template('record_detail.html', app_detail=app_detail, patient=patient_data)
+    return render_template('staff_record_detail.html', app_detail=app_detail, patient=patient_data)
 
 @app.route('/patient_search',methods=['GET','POST'])
 def patient_search():
@@ -349,9 +357,9 @@ def patient_search():
                 r.append(patient_name) #id 11
                 record_list.append(r)
             print(record_list)
-        return render_template('patient_search.html', no_record=no_record, records=record_list)
+        return render_template('staff_patient_search.html', no_record=no_record, records=record_list)
 
-    return render_template('patient_search.html')
+    return render_template('staff_patient_search.html')
 
 @app.route('/patient_detail/<int:patient_id>')
 def patient_detail(patient_id):
@@ -368,7 +376,7 @@ def owner_news():
     db_connection = DatabaseWorker("IA_database")
     news = db_connection.search(query=f"""
     SELECT * FROM news""", multiple=True)
-    return render_template('owner_news.html', news=news)
+    return render_template('staff_news_all.html', news=news)
 
 @app.route('/news_create',methods=['GET','POST'])
 def news_create():
@@ -387,7 +395,7 @@ def news_create():
         db_connection.close()
         return redirect(url_for('owner_news'))
 
-    return render_template('news_create.html')
+    return render_template('staff_news_create.html')
 
 @app.route('/news_edit/<int:news_id>',methods=['GET','POST'])
 def news_edit(news_id):
@@ -404,7 +412,7 @@ def news_edit(news_id):
         db_connection.close()
         return redirect(url_for('owner_news'))
     db_connection.close()
-    return render_template('news_edit.html', news=news_data)
+    return render_template('staff_news_edit.html', news=news_data)
 
 @app.route('/news_delete/<int:news_id>/delete',methods=['GET','POST'])
 def news_delete(news_id):
@@ -427,9 +435,18 @@ def clinic_info():
 def greetings():
     return render_template('greetings.html')
 
-@app.route('/news')
-def news():
-    return render_template('news.html')
+@app.route('/news/<int:news_id>')
+def news(news_id):
+    db_connection = DatabaseWorker("IA_database")
+    query=f"""
+    SELECT * FROM news"""
+    news=db_connection.search(query=query,multiple=True)
+    return render_template('news.html', news=news)
+
+@app.route('/news_all')
+def news_all():
+    db_connection = DatabaseWorker("IA_database")
+    return render_template('news_all.html')
 
 @app.route('/access')
 def access():

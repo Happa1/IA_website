@@ -1,0 +1,102 @@
+body{
+    margin: 0;
+}
+
+html{
+    background-color: #fff9e2;
+    text-decoration: none;
+    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro", "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+}
+
+header{
+    background-color: #FFFFFF;
+    height: 15vh;
+    text-align: center;
+    font-size: 30px;
+    display: table;
+    width: 100%;
+}
+
+header div{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+header span{
+    color: #f5d989;
+}
+
+header p{
+    font-size: 12px;
+}
+
+h1{
+    text-align: center;
+    font-size: 30px;
+}
+
+.body_container{
+    width: 70vh;
+    padding: 1em 2em;
+    margin: 30px auto;
+    color: #ff96c1;
+    background: #ffedec;/*背景色*/
+    border-top: solid 6px #ff96c1;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    text-align: center;
+}
+
+.body_container div{
+    margin: 5px;
+}
+
+.container_btn{
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    width: 300px;
+    color: #fd837b;
+    background-color: #fffef8;
+    border-top: 1px solid #fd837b;
+    border-left: 1px solid #fd837b;
+    border-right: 1px solid #fd837b;
+    border-bottom: 5px solid #fd837b;
+    border-radius: 100vh;
+}
+
+.container_btn:hover{
+    margin-top: 3px;
+    border-bottom: 2px solid #fd837b;
+}
+
+.bottom_btn{
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    width: 300px;
+    color: #FFFFFF;
+    background-color: #ffd69b;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 5px solid #ffcc59;
+    border-radius: 100vh;
+    display: table-cell;
+    vertical-align: middle;
+    margin: 10px auto;
+}
+
+.bottom_btn:hover{
+    margin-top: 3px;
+    border-bottom: 2px solid #ffcc59;
+}
+
+.bottom_btn a{
+    text-decoration: none;
+    color: #98601b;
+}
+
+.bottom_btn_container{
+    text-align: center;
+}

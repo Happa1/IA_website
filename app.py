@@ -235,7 +235,9 @@ def staff_login():
             if valid:
                 user_id = row[0]
                 session['user_id'] = user_id
-                return redirect(url_for('owner_home'))
+                username=db_connection.search(query=f"""
+                SELECT name FROM staff WHERE id={user_id}""")[0]
+                return redirect(url_for('owner_home', username=username))
             else:
                 login_err = True
     db_connection.close()

@@ -1,0 +1,65 @@
+.btn_box{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.btn_box button{
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	position: relative;
+	width: 300px;
+    height: 100px;
+	margin: 10px;
+	padding: 1rem 4rem;
+	font-weight: bold;
+	border-radius: 10px;
+    background-color: #FFFFFF;
+	transition: 0.3s ease-in-out;
+}
+
+.btn_box button:hover{
+    box-shadow: none;
+	transform: translate(5px, 5px);
+}
+
+.btn_box button a{
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#app{
+    border: 3px solid #f39800;
+	box-shadow: 5px 5px #f39800;
+}
+
+#app a{
+    color: #f39800;
+}
+
+#patient_search{
+    border: 3px solid #1dc1d6;
+	box-shadow: 5px 5px #1dc1d6;
+}
+#patient_search a{
+    color: #1dc1d6;
+}
+
+#news{
+    border: 3px solid #f79d93;
+	box-shadow: 5px 5px #f79d93;
+}
+#news a{
+    color: #f79d93;
+}
+
+#pass{
+    border: 3px solid #38b48b;
+	box-shadow: 5px 5px #38b48b;
+}
+#pass a{
+    color: #38b48b;
+}
+
+

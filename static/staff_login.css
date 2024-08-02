@@ -1,0 +1,11 @@
+input{
+    font-size: 18px;
+}
+
+.container_btn{
+    margin: 20px;
+}
+
+.body_container{
+    min-height: 180px;
+}

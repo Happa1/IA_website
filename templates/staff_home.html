@@ -3,12 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Owner_Home</title>
+    <link rel="stylesheet" href="/static/staff_common.css">
+    <link rel="stylesheet" href="/static/staff_home.css">
+
 </head>
 <body>
-<h1>Welcome to Owner Page</h1>
-<button><a href="{{ url_for('appointment_view') }}">Check Today's Appointment</a></button>
-<button><a href="{{ url_for('patient_search') }}">See Patient List</a></button>
-<button><a href="{{ url_for('owner_news') }}">Update News</a></button>
-<button><a href="{{ url_for('pre_password') }}">Create Staff Account or Edit</a></button>
+    <div id="container">
+        <header>
+            <div>
+                <span>U. Pediatrics Clinic<br>Staff page</span>
+            </div>
+            <div>
+                <p>Username: {{ username }}</p>
+            </div>
+        </header>
+
+        <section>
+            <h1>Welcome to Owner Page</h1>
+            <div class="btn_box">
+                <div class="btn_child_box">
+                    <button id="app"><a href="{{ url_for('appointment_view') }}">Check Today's Appointment</a></button>
+                    <button id="patient_search"><a href="{{ url_for('patient_search') }}">See Patient List</a></button>
+                </div>
+
+                <div class="btn_child_box">
+                    <button id="news"><a href="{{ url_for('owner_news') }}">Update News</a></button>
+                    <button id="pass"><a href="{{ url_for('pre_password') }}">Create Staff Account or Edit</a></button>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
 </body>
 </html>

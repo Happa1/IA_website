@@ -174,52 +174,6 @@ def survey(appointment_id, app_date):
 def appointment_check():
     return render_template('appointment_check.html')
 
-@app.route('/staff_register',methods=['GET','POST'])
-def staff_register():
-    db_connection = DatabaseWorker("IA_database")
-    if request.method == "POST":
-        uname = request.form.get('uname')
-        password = request.form.get('psw')
-        conf_password = request.form.get('psw_conf')
-
-        valid = True
-        user_err=False
-        psw_err=False
-        psw_cnf_err = False
-
-        staff_table = db_connection.search(query="SELECT * FROM staff", multiple=True)
-
-        for row in staff_table:
-            if row[1]==uname:
-                user_err=True
-                print("the user name already exist")
-                valid=False
-                break
-
-        if len(password)<8:
-            psw_err=True
-            valid = False
-        if password!=conf_password:
-            psw_cnf_err=True
-            valid = False
-
-        hash_text=f"name{uname}, pass{password}"
-        hash=make_hash(hash_text)
-
-        if valid:
-            query = f"""INSERT INTO staff (name,signature)
-            values ('{uname}','{hash}');
-            """
-            db_connection.run_query(query=query)
-            db_connection.close()
-            return redirect(url_for('staff_login'))
-
-        db_connection.close()
-        return render_template('staff_register.html', psw_err=psw_err, psw_cnf_err=psw_cnf_err, user_err=user_err)
-
-    db_connection.close()
-    return render_template('staff_register.html')
-
 @app.route('/staff_login',methods=['GET','POST'])
 def staff_login():
     db_connection = DatabaseWorker("IA_database")
@@ -239,6 +193,7 @@ def staff_login():
                 SELECT name FROM staff WHERE id={user_id}""")[0]
                 return redirect(url_for('owner_home', username=username))
             else:
+                print("login_error")
                 login_err = True
     db_connection.close()
     return render_template('staff_login.html', login_err=login_err)
@@ -281,6 +236,10 @@ def app_edit(record_id):
     db_connection = DatabaseWorker("IA_database")
     record = db_connection.search(query=f"""
     SELECT * FROM record WHERE id={record_id}""")
+    patient_id=db_connection.search(query=f"""
+    SELECT patient_id FROM record WHERE id={record_id}""",multiple=False)[0]
+    patient_data = db_connection.search(query=f"""
+        SELECT * FROM patients WHERE id={patient_id}""", multiple=False)
     if request.method == "POST":
         new_symptom = request.form.get('symptom')
         new_temperature = request.form.get('temperature1')
@@ -290,7 +249,7 @@ def app_edit(record_id):
                 """
         db_connection.run_query(query=query)
         return redirect(url_for('appointment_view'))
-    return render_template('staff_appointment_edit.html', record=record)
+    return render_template('staff_appointment_edit.html', record=record, patient=patient_data)
 
 @app.route('/app_cancel/<int:appointment_id>')
 def app_cancel(appointment_id):
@@ -455,9 +414,51 @@ def access():
     return render_template('access.html')
 
 
-@app.route('/pre_password')
-def pre_password():
-    return render_template('pre_password_edit.html')
+@app.route('/staff_password',methods=['GET','POST'])
+def staff_register():
+    db_connection = DatabaseWorker("IA_database")
+    if request.method == 'POST':
+        uname = request.form.get('name')
+        password = request.form.get('psw')
+        conf_password = request.form.get('psw_conf')
+        valid = True
+        user_err = False
+        psw_err = False
+        psw_cnf_err = False
+
+        staff_table = db_connection.search(query="SELECT * FROM staff", multiple=True)
+
+        for row in staff_table:
+            if row[1] == uname:
+                user_err = True
+                print("the user name already exist")
+                valid = False
+                break
+
+        if len(password) < 8:
+            psw_err = True
+            valid = False
+
+        if password != conf_password:
+            psw_cnf_err = True
+            valid = False
+
+        hash_text = f"name{uname}, pass{password}"
+        signature = make_hash(hash_text)
+
+        if valid:
+            query = f"""INSERT INTO staff (name,signature)
+                    values ('{uname}','{signature}');
+                    """
+            db_connection.run_query(query=query)
+            db_connection.close()
+            return redirect(url_for('staff_login'))
+
+        db_connection.close()
+        return render_template('staff_password_edit.html', psw_err=psw_err, psw_cnf_err=psw_cnf_err,
+                               user_err=user_err)
+    db_connection.close()
+    return render_template('staff_password_edit.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

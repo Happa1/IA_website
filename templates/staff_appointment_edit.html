@@ -3,19 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Appointment_Staff_Edit</title>
+    <link rel="stylesheet" href="/static/staff_common.css">
+    <link rel="stylesheet" href="/static/staff_appointment_edit.css">
+
 </head>
 <body>
-<h1>Appointment Edit page</h1>
-<form  method="post">
-    <label for="symptom">Symptom</label>
-    <input type="text" name="symptom" id="symptom" value="{{ record[5] }}" required>
-    <label for="temperature">Temperature</label>
-    <input type="text" inputmode="numeric" name="temperature1" id="temperature" pattern="^(?:[0-9]{1,2}(\.[0-9])?)?" value="{{ record[6] }}" required>
-{#    <p>.</p>#}
-{#    <input type="text" inputmode="numeric" name="temperature2" id="temperature2" pattern="[0-9]{1}" value="{{ record[6]}}" required>#}
-    <label for="note">Note</label>
-    <input type="text" name="note" id="note" value="{{ record[7] }}" required>
-    <button type="submit">Edit</button>
-</form>
+<div id="container">
+    <header>
+            <div>
+                <span>U. Pediatrics Clinic<br>Staff page</span>
+            </div>
+            <div>
+                <p>Username: </p>
+            </div>
+        </header>
+</div>
+<div class="body_container">
+        <div id="patient_info_container_left">
+        <div id="app_time">
+             <h2>Appointment Information</h2>
+            <span>{{ record[2] }}  {{ record[3] }}~{{ record[4] }}</span>
+        </div>
+        <div id="patient_name">
+            <h3>Name: {{ patient[2] }}</h3>
+            <button class="btn_pink"><a href="{{ url_for('patient_detail', patient_id=patient[0]) }}">Patient detail</a> </button>
+        </div>
+    </div>
+</div>
+    <div id="app_edit_container">
+        <h1>Appointment Edit</h1>
+        <form  method="post">
+            <label for="symptom">Symptom</label>
+            <input type="text" name="symptom" id="symptom" value="{{ record[5] }}" required>
+            <label for="temperature">Temperature</label>
+            <input type="text" inputmode="numeric" name="temperature1" id="temperature" pattern="^(?:[0-9]{1,2}(\.[0-9])?)?" value="{{ record[6] }}" required>
+        {#    <p>.</p>#}
+        {#    <input type="text" inputmode="numeric" name="temperature2" id="temperature2" pattern="[0-9]{1}" value="{{ record[6]}}" required>#}
+            <label for="note">Note</label>
+            <textarea name="note" id="note" required>{{ record[7] }}</textarea>
+            <button id="edit_btn" class="container_btn" type="submit">Edit</button>
+        </form>
+    </div>
+
+
+
 </body>
 </html>

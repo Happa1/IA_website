@@ -1,0 +1,24 @@
+#news_edit_container{
+    width: 100vh;
+    margin: 30px auto;
+}
+
+#news_edit_container form{
+    display: flex;
+    flex-direction: column;
+}
+
+#news_edit_container input,textarea,select{
+    font-size: 18px;
+    margin: 10px;
+    border: solid 2px #cda16f;
+    border-radius: 10px;
+}
+
+#news_edit_container select{
+    width: 50vh;
+}
+
+#news_edit_btn{
+    margin: 30px auto;
+}

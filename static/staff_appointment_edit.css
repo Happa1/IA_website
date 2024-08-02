@@ -1,0 +1,31 @@
+#edit_btn{
+    margin: 30px auto;
+}
+
+.btn_pink{
+    background-color: #ff9898;
+    border: #ff6868 2px solid;
+    border-radius: 5px;
+    width: 15vh;
+    height: 5vh;
+    margin: 5px;
+}
+
+.btn_pink a {
+    color: #4f4e4e;
+    text-decoration: none;
+}
+
+#app_edit_container{
+    width: 70vh;
+    margin: 30px auto;
+}
+
+#app_edit_container form{
+    display: flex;
+    flex-direction: column;
+}
+
+#app_edit_container input,textarea{
+    font-size: 18px;
+}

@@ -3,28 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Appointment_Detail</title>
+    <link rel="stylesheet" href="/static/staff_common.css">
+    <link rel="stylesheet" href="/static/staff_record_detail.css">
+
 </head>
 <body>
-<h2>Appointment Info</h2>
-<h3>Start: {{ app_detail[3] }}</h3>
-<h3>End: {{ patient[4] }}</h3>
+<div id="container">
+    <header>
+            <div>
+                <span>U. Pediatrics Clinic<br>Staff page</span>
+            </div>
+            <div>
+                <p>Username: </p>
+            </div>
+        </header>
+</div>
 
-<h2>Patient Info</h2>
-<h3>Name: {{ patient[2] }}</h3>
-<h3>{{ patient[3] }}</h3>
-<h3>{{ patient[4] }}</h3>
-<h3>{{ patient[7] }}</h3>
-<button><a href="{{ url_for('patient_detail', patient_id=patient[0]) }}">Patient detail</a> </button>
+<section>
+    <div id="patient_info_container">
+        <div id="patient_info_container_left">
+            <div id="app_time">
+                 <h2>Appointment Information</h2>
+                <span>{{ app_detail[2] }}  {{ app_detail[3] }}~{{ app_detail[4] }}</span>
+            </div>
+            <div id="patient_name">
+                <h3>Name: {{ patient[2] }}</h3>
+                <button><a href="{{ url_for('patient_detail', patient_id=patient[0]) }}">Patient detail</a> </button>
+            </div>
+        </div>
 
-<h2>Symptom Info</h2>
-<h3>Symptom: {{ app_detail[5] }}</h3>
-<h3>Temperature: {{ app_detail[6] }}</h3>
-<h3>Note:  {{ app_detail[7] }}</h3>
-<form method="post">
-    <textarea name="treatment"></textarea>
-    <textarea name="memo"></textarea>
-    <button type="submit">Record</button>
-</form>
+        <div id="patient_info_container_right">
+            <h3>Sex: {{ patient[3] }}</h3>
+            <h3>Age: {{ patient[4] }}</h3>
+            <h3>Birthday: {{ patient[5] }}</h3>
+            <h3>Allergy: {{ patient[7] }}</h3>
+        </div>
+
+    </div>
+
+    <div id="symptom_container">
+        <div id="patient_symptom_container">
+        <h2>Symptom Info</h2>
+        <h3>Temperature: {{ app_detail[6] }}</h3>
+        <h3>Symptom: {{ app_detail[5] }}</h3>
+        <h3>Note:  {{ app_detail[7] }}</h3>
+        </div>
+        <div id="doctor_symptom_container">
+            <form method="post">
+                <label for="treatment">Treatment</label>
+                <textarea name="treatment"></textarea>
+                <label for="memo">Memo</label>
+                <textarea name="memo"></textarea>
+                <button class="container_btn" type="submit">Record</button>
+            </form>
+        </div>
+    </div>
+
+</section>
 
 </body>
 </html>

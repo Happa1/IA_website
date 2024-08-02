@@ -3,38 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Patient_Search</title>
+     <script src="https://kit.fontawesome.com/b6f31539a5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/staff_common.css">
+    <link rel="stylesheet" href="/static/staff_patient_search.css">
+
 </head>
 <body>
+<div id="container">
+    <header>
+            <div>
+                <span>U. Pediatrics Clinic<br>Staff page</span>
+            </div>
+            <div>
+                <p>Username: </p>
+            </div>
+        </header>
+</div>
+<div id="body_container">
+    <form method="post">
+        <label>ID Search</label>
+        <input type="text" name="search_id">
+        <label>Date Search</label>
+        <input type="date" name="search_date">
+        <button type="submit" id="search_btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+    </form>
 
-<form method="post">
-    <label>ID Search</label>
-    <input type="text" name="search_id">
-    <label>Date Search</label>
-    <input type="date" name="search_date">
-    <button type="submit">Search</button>
-</form>
+    <div id="table_box">
+        <table>
+        {% if no_record == False %}
+            <tr>
+                <th>PatientID</th>
+                <th>Patient Name</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>Record</th>
+            </tr>
+            {% for r in records%}
+            <tr>
+                <td>{{ r[10]}}</td>
+                <td>{{ r[11]}}</td>
+                <td>{{ r[2]}}</td>
+                <td>{{ r[3]}}</td>
+                <td><a class="btn btn-success" href="{{ url_for('record_detail',record_id =r[0],patient_id=r[1])}}">Record</a></td>
+            </tr>
+            {% endfor %}
 
-<table>
-    <tr>
-        <th>PatientID</th>
-        <th>Patient Name</th>
-        <th>Date</th>
-        <th>Start Time</th>
-        <th>Record</th>
-    </tr>
-    {% if no_record == False %}
-    	{% for r in records%}
-        <tr>
-            <td>{{ r[10]}}</td>
-            <td>{{ r[11]}}</td>
-            <td>{{ r[2]}}</td>
-            <td>{{ r[3]}}</td>
-            <td><a class="btn btn-success" href="{{ url_for('record_detail',record_id =r[0],patient_id=r[1])}}">Record</a></td>
-        </tr>
-        {% endfor %}
-    {% endif %}
+        {% else %}
+            Search Patient with Patient ID or Date
+        {% endif %}
 
-</table>
+    </table>
+    </div>
+
+</div>
 
 </body>
 </html>

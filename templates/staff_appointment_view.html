@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment_View</title>
+    <link rel="stylesheet" href="/static/staff_common.css">
+    <link rel="stylesheet" href="/static/staff_appointment_view.css">
+
+</head>
+<body>
+    <div id="container">
+        <header>
+            <div>
+                <span>U. Pediatrics Clinic<br>Staff page</span>
+            </div>
+            <div>
+                <p>Username: </p>
+            </div>
+        </header>
+    </div>
+
+    <section>
+        <h1>Today's appointments</h1>
+        <div class="body_container">
+            <table>
+                <tr>
+                    <th>Start time</th>
+                    <th>End time</th>
+                    <th>Patient</th>
+                    <th>View Record</th>
+                </tr>
+                {% for r in appointments %}
+                    <tr>
+                        <td>{{ r[4]}}</td>
+                        <td>{{ r[5]}}</td>
+                    {% if r[1]==0 %}
+                        <td><button class="btn_white"><a>No patient</a></button></td>
+                        <td><button  class="btn_white"><a>No Appointment</a></button></td>
+            {#            <td><a class="btn btn-success" href="{{ url_for('app_edit', record) }}"></a></td>#}
+            {#            <td><a class="btn btn-success" href="{{ url_for('') }}"></a></td>#}
+                    {% else %}
+                        <td><button class="btn_green_outline"><a  href="{{ url_for('patient_detail', patient_id=r[1])}}">{{ r[6] }}</a></button></td>
+                        <td><button class="btn_green_outline"><a  href="{{ url_for('record_detail', record_id=r[2], patient_id=r[1]) }}">Record</a></button></td>
+                        <td><button class="btn_green_outline"><a  href="{{ url_for('app_edit', record_id=r[2]) }}">Edit</a></button></td>
+                        <td><button class="btn_pink"><a  href="{{ url_for('app_cancel', appointment_id=r[0]) }}"
+                                       onclick="return confirm('Are you sure you want to cancel?')">Cancel</a></button></td>
+                    {% endif %}
+
+
+
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </section>
+
+
+</body>
+</html>

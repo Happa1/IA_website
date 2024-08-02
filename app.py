@@ -274,7 +274,7 @@ def appointment_view():
             appointment_list[index].append('None')
             index += 1
     print(appointment_list)
-    return render_template('appointment_view.html',appointments=appointment_list, app_date=app_date)
+    return render_template('staff_appointment_view.html', appointments=appointment_list, app_date=app_date)
 
 @app.route('/app_edit/<int:record_id>', methods=['GET','POST'])
 def app_edit(record_id):

@@ -1,0 +1,53 @@
+#patient_info_container{
+    width: 100vh;
+    padding: 1em 2em;
+    margin: 30px auto;
+    color: #ff96c1;
+    background: #ffedec;/*背景色*/
+    border-top: solid 6px #ff96c1;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#patient_name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#patient_info_container button{
+    border-radius: 5px;
+    background-color: #ff9898;
+    border: #ff6868 2px solid;
+    width: 15vh;
+    height: 5vh;
+    margin: 5px;
+}
+
+#patient_info_container a{
+    text-decoration: none;
+    color: #4f4e4e;
+}
+
+#symptom_container{
+    margin: 30px auto;
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#doctor_symptom_container{
+    width: 50vh;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+#doctor_symptom_container button{
+    margin: 20px auto;
+}

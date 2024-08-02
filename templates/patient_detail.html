@@ -3,32 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Patient_detail</title>
+    <link rel="stylesheet" href="/static/staff_common.css">
+    <link rel="stylesheet" href="/static/patient_detail.css">
+
 </head>
 <body>
-<h2>Patient Info</h2>
-<h3>Name: {{ patient_data[2] }}</h3>
-<h3>{{ patient_data[3] }}</h3>
-<h3>{{ patient_data[4] }}</h3>
-<h3>{{ patient_data[7] }}</h3>
 
-<h2>All Record</h2>
+<div id="container">
+    <header>
+        <div>
+            <span>U. Pediatrics Clinic<br>Staff page</span>
+        </div>
+        <div>
+            <p>Username: </p>
+        </div>
+    </header>
 
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Record</th>
-        </tr>
-    {% for r in patient_record %}
-        <tr>
-            <td>{{ r[2]}}</td>
-            <td>{{ r[3]}}</td>
-            <td>{{ r[4]}}</td>
-            <td><a class="btn btn-success" href="{{ url_for('record_detail',record_id=r[0], patient_id=r[1])}}">Record</a></td>
-        </tr>
-    {% endfor %}
-    </table>
+    <section>
+
+        <div class="body_container">
+            <h2>Patient Info</h2>
+            <div id="patient_info_container">
+                <h3>Name: {{ patient_data[2] }}</h3>
+                <h3>Sex: {{ patient_data[3] }}</h3>
+                <h3>Age: {{ patient_data[4] }}</h3>
+                <h3>Birthday: {{ patient_data[6] }}</h3>
+                <h3>Allergy: {{ patient_data[7] }}</h3>
+                <h3>Email: {{ patient_data[5] }}</h3>
+
+            </div>
+        </div>
+
+
+        <div id="record_container">
+            <h2>All Record</h2>
+
+            <table>
+            <tr>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Record</th>
+            </tr>
+        {% for r in patient_record %}
+            <tr class="record_item">
+                <td>{{ r[2]}}</td>
+                <td>{{ r[3]}}</td>
+                <td>{{ r[4]}}</td>
+                <td><a class="btn btn-success" href="{{ url_for('record_detail',record_id=r[0], patient_id=r[1])}}">Record</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+        </div>
+
+    </section>
+</div>
+
 
 </body>
 </html>

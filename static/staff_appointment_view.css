@@ -1,0 +1,41 @@
+.body_container{
+    width: 80vh;
+}
+
+button{
+    border-radius: 5px;
+    width: 15vh;
+    height: 5vh;
+    margin: 5px;
+}
+
+button a{
+    text-decoration: none;
+}
+
+.btn_white{
+    background-color: #FFFFFF;
+    border: #808080 2px solid;
+}
+
+.btn_white a{
+    color: #808080;
+}
+
+.btn_green_outline{
+    background-color: #FFFFFF;
+    border: #38b48b 2px solid;
+}
+
+.btn_green_outline a{
+    color: #38b48b;
+}
+
+.btn_pink{
+    background-color: #ff9898;
+    border: #ff6868 2px solid;
+}
+
+.btn_pink a{
+    color: #4f4e4e;
+}

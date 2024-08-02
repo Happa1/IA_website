@@ -1,0 +1,26 @@
+#patient_info_container{
+    text-align: left;
+}
+#record_container{
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    width: 100vh;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+}
+.record_item{
+   border-top: 1px solid #CCC;
+}
+
+th,td{
+    width: 20vh;
+    border-bottom: solid 2px #808080;
+    border-collapse: none;
+}
+
+table{
+    text-align: center;
+    margin: auto;
+    border-spacing:0
+}

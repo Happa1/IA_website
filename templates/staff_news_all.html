@@ -3,24 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Owner_News</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui/dist/cirrus.min.css">
+     <script src="https://kit.fontawesome.com/b6f31539a5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/staff_common.css">
+    <link rel="stylesheet" href="/static/staff_news_all.css">
+
 </head>
 <body>
-<h1>This is all news for owner to check and edit!</h1>
-<button><a href="{{ url_for('news_create' )}}">Write New News</a></button>
+<div id="container">
+    <header>
+            <div>
+                <span>U. Pediatrics Clinic<br>Staff page</span>
+            </div>
+            <div>
+                <p>Username: </p>
+            </div>
+        </header>
 
-{% for r in news %}
-	<tr>
-        <td>{{ r[1] }}</td>
-        <td>{{ r[2] }}</td>
-        <td>{{ r[3] }}</td>
-        <td>{{ r[4] }}</td>
-        <td><a class="btn btn-success" href="{{ url_for('news_edit', news_id=r[0]) }}">Edit</a></td>
-        <td><a class="btn btn-success" href="{{ url_for('news_delete', news_id=r[0]) }}"
-               onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
-    </tr>
-{% endfor %}
+    <section>
+        <h1>News</h1>
+        <button class="container_btn" id="news_btn"><a href="{{ url_for('news_create' )}}"><i class="fa-solid fa-pencil"></i> Create News</a></button>
+
+{% if news | length!=0 %}
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Type</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+            {% for r in news %}
+    	<tr>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td class="text_limit">{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td><button class="btn btn_green_outline"><a  href="{{ url_for('news_edit', news_id=r[0]) }}">Edit</a></button></td>
+            <td><button class="btn btn_pink"><a  href="{{ url_for('news_delete', news_id=r[0]) }}"
+                   onclick="return confirm('Are you sure you want to delete?')">Delete</a></button></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+
+
+{% else %}
+    <span>No News Yet.</span>
+
+{% endif %}
+
+
+    </section>
+</div>
+
+
 
 </body>
 </html>

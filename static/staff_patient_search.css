@@ -1,0 +1,42 @@
+#search_btn{
+    border-radius: 20px;
+    background-color: #fffffe;
+    border: #ff6868 2px solid;
+    width: 15vh;
+    height: 5vh;
+    margin: 5px;
+    font-size: 15px;
+    color: #ff9898;
+}
+
+#search_btn:hover{
+    background-color: #ff9898;
+    color: #fffffe;
+}
+
+#body_container{
+    text-align: center;
+    padding: 30px;
+}
+
+#table_box{
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #FFFFFF;
+    width: 100vh;
+    border-radius: 20px;
+}
+
+table{
+    text-align: center;
+    margin: auto;
+    padding: 30px;
+    border-spacing:0
+}
+
+th, td{
+    width: 20vh;
+    border-bottom: solid 2px #808080;
+    border-collapse: none;
+
+}
